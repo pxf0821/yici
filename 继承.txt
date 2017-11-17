@@ -1,0 +1,31 @@
+继承有三种：类式继承，原型继承，组合继承。
+类式继承：在子构造函数中，运用.call()或.apply()方法，改变this指针方向，从而使父构造函数又执行一遍，从而继承父构造器的属性和方法。
+原型继承：将实例化的父构造函数赋予子构造函数的原型，从而实现继承。
+类式不是真正的继承，而原型是。
+类式继承的子构造函数不能继承父类原型里的属性和方法。原型继承可以。
+类式可以改变参数，原型不行。
+组合继承就是类式和原型的方法都写。缺点是：调用两遍父构造函数，造成内存消耗。
+因此：有了：寄生式继承。简单点说是：
+子构造函数.prototype = new 父构造函数（）；这一步用以下几步代替，就可解决调用两遍的问题。
+
+
+/*****寄生组合式继承******/
+
+//subtype 子类  supertype 父类
+function inherit(subType, superType){
+   
+   // {name:"",sex:20};
+   //对象 有superType 原型所有的属性 方法
+
+1：
+   var protoType = Object.create(superType.prototype); //创建对象
+
+   // protoType  有 subType 构造函数里的所有属性和方法 
+   // {name:"",sex:20,constructor:指向子类构造函数的指针};
+2：
+   protoType.constructor = subType;     //增强对象
+   //子类的原型 =  superType 原型所有的属性 方法 +  subType 构造函数里的所有属性和方法
+3：
+   subType.prototype = protoType;      //指定对象
+}
+

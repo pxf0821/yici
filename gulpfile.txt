@@ -1,0 +1,74 @@
+﻿这是下载指令//
+  cnpm install gulp-jshint gulp-sass gulp-concat gulp-uglify gulp-rename gulp-minify-css  browser-sync gulp-htmlmin --save-dev
+
+
+
+var gulp = require('gulp');  //加载gulp模块
+var less = require('gulp-less');//转译less
+var uglifyJs = require('gulp-uglify');  //加载uglify模块   压缩js
+var cleanCss = require('gulp-clean-css');  //加载clean模块  压缩css
+var sass=require('gulp-sass');//转译scss
+var htmlmin=require('gulp-htmlmin');//压缩html
+var rename=require('gulp-rename');//重命名
+var concat=require('gulp-concat');//合并
+
+//定义一个压缩js代码的任务
+gulp.task('uglifyJs', [], function() {
+    gulp.src('js/*.js')  //找到原始文件
+        .pipe(uglifyJs())    //压缩js代码
+        .pipe(gulp.dest('js/src'));  //压缩后的代码储存在这里
+});
+
+//定义一个less自动生成css任务
+gulp.task('testLess', function () {
+    gulp.src('less/*.less') //该任务针对的文件
+        .pipe(less()) //该任务调用的模块
+        .pipe(gulp.dest('less/css')); //将会在src/css下生成index.css
+});
+
+// //定义一个压缩css代码的任务
+gulp.task('cleanCss', [], function() {
+    gulp.src('css/*.css')  //找到原始文件
+        .pipe(cleanCss())    //压缩css代码
+        .pipe(gulp.dest('css/src'));  //压缩后的代码储存在这里
+});
+//定义一个sass自动生成css的任务
+gulp.task('sass', [], function() {
+    gulp.src('sass/*.scss')  //找到原始文件
+        .pipe(sass().on('error', sass.logError))    //该任务调用的模块
+        .pipe(gulp.dest('sass/src'));  //将会在sass/src下生成index.css
+});
+//定义一个压缩html代码的任务
+gulp.task('htmlmin', [], function() {
+    gulp.src('html/*.html')  //找到原始文件
+        .pipe(htmlmin())    //压缩html代码
+        .pipe(gulp.dest('html/src'));  //压缩后的代码储存在这里
+});
+//定义一个合并任务
+gulp.task('concat', [], function() {
+    gulp.src('js/src/*.js')  //找到原始文件
+        .pipe(concat('concat.js'))    //压缩html代码
+        .pipe(gulp.dest('js/src'));  //压缩后的代码储存在这里
+});
+//定义一个重命名任务
+gulp.task('rename', [], function() {
+    gulp.src('js/src/concat.js')  //找到原始文件
+        .pipe(rename('concat.min.js'))    //压缩html代码
+        .pipe(gulp.dest('js/src'));  //压缩后的代码储存在这里
+});
+// //定义一个监听任务
+gulp.task('watch', function() {
+    //监听文件，一旦文件有变化，就执行相应的任务
+    gulp.watch('less/*.less', ['testLess']);
+    gulp.watch('js/*.js', ['uglifyJs']);
+    gulp.watch('css/*.css', ['cleanCss']);
+    gulp.watch('sass/*.sass', ['sass']);
+    gulp.watch('html/*.html', ['htmlmin']);
+    gulp.watch('js/src/*.js', ['concat']);
+    gulp.watch('js/src/concat.js', ['rename']);
+});
+
+// //默认执行的任务, 执行完数组中的任务之后，再执行当前任务
+gulp.task('default', ['testLess','uglifyJs','cleanCss','sass','htmlmin','concat','rename'], function() {
+    console.log('执行完毕');
+});

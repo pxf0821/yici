@@ -1,0 +1,30 @@
+各个浏览器兼容：
+css3中-moz、-ms、-webkit分别代表的意思
+这三个分别是目前流行的三种浏览器的私有属性
+
+-moz代表firefox浏览器私有属性
+
+-ms代表ie浏览器私有属性（360浏览器是ie内核）
+
+-webkit代表safari、chrome私有属性
+
+-o代表opera私有属性
+
+IE的内核是Trident，Mozilla的Gecko,google的WebKit,Opera内核Presto
+
+
+String s =" Hello World ";
+System.out.println(s.trim());//Hello World  
+str.trim():去掉字符串首尾的空格
+
+
+
+
+    SQL语句大全  --语 句 功 能     --数据操作  SELECT --从数据库表中检索数据行和列 INSERT --向数据库表添加新数据行 DELETE --从数据库表中删除数据行 UPDATE --更新数据库表中的数据   -数据定义  CREATE TABLE --创建一个数据库表 DROP TABLE --从数据库中删除表 ALTER TABLE --修改数据库表结构 CREATE VIEW --创建一个视图 DROP VIEW --从数据库中删除视图  CREATE INDEX --为数据库表创建一个索引 DROP INDEX --从数据库中删除索引  CREATE PROCEDURE --创建一个存储过程 DROP PROCEDURE --从数据库中删除存储过程 CREATE TRIGGER --创建一个触发器 DROP TRIGGER --从数据库中删除触发器  CREATE SCHEMA --向数据库添加一个新模式 DROP SCHEMA --从数据库中删除一个模式 CREATE DOMAIN --创建一个数据值域 ALTER DOMAIN --改变域定义  DROP DOMAIN --从数据库中删除一个域   --数据控制  GRANT --授予用户访问权限 DENY --拒绝用户访问  REVOKE --解除用户访问权限   --事务控制  COMMIT --结束当前事务 ROLLBACK --中止当前事务  SET TRANSACTION --定义当前事务数据访问特征   --程序化SQL  DECLARE --为查询设定游标  EXPLAN --为查询描述数据访问计划 OPEN --检索查询结果打开一个游标 
+
+
+
+options：{mangle：false}    js压缩文件是变量名不变
+
+
+scope里面的值：@属性赋值  =变量赋值  &函数
